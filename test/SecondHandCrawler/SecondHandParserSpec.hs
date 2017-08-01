@@ -10,15 +10,13 @@ htmlString divs = "<html><body>" ++ divs ++ "</body></html>"
 offerHtml =
   "  <div class='gm_offer' id='gm_offer_id_58952'>\
 \      <div class='gm_offer_image '>\
-\          <a href='/db3/gebrauchtmarkt/anzeige/id/58952' title='Mntor 2 M'>\
+\          <a href='/offer' title='Mntor 2 M'>\
 \     <img src='/src.jpg' alt='&raquo; Details' title='Mntor 2 M' />\
 \     </a>\
 \      </div>\
 \      <div class='gm_offer_description '>\
-\          <h2><a href='/db3/gebrauchtmarkt/anzeige/id/58952' title='Zu den Angebot Details' class = 'dtl'>Mentor for test</a></h2>\
-\          <div class='bodytext'>\
-\              TestDescription\
-\          </div>\
+\          <h2><a href='/offer' title='Zu den Angebot Details' class = 'dtl'>Mentor for test</a></h2>\
+\          <div class='bodytext'>TestDescription                </div>\
 \      </div>\
 \    </div>"
 
@@ -29,4 +27,10 @@ spec =
     it "should parse html as string to result datatype" $
       parseHtml (htmlString $ offerHtml ++ offerHtml) `shouldBe` Just [offer, offer]
   where
-    offer = SecondHandOffer {title = "Mentor for test", imgSrc = "/src.jpg"}
+    offer =
+      SecondHandOffer
+      { title = "Mentor for test"
+      , imgSrc = "http://www.dhv.de/src.jpg"
+      , href = "http://www.dhv.de/offer"
+      , description = "TestDescription"
+      }
