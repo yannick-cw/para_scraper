@@ -23,9 +23,9 @@ offerHtml =
 spec :: Spec
 spec =
   describe "SecondHandParser" $ do
-    it "should parse html as string to result datatype" $ parseHtml (htmlString offerHtml) `shouldBe` Just [offer]
+    it "should parse html as string to result datatype" $ parseHtml (htmlString offerHtml) `shouldBe` [offer]
     it "should parse html as string to result datatype" $
-      parseHtml (htmlString $ offerHtml ++ offerHtml) `shouldBe` Just [offer, offer]
+      parseHtml (htmlString $ offerHtml ++ offerHtml) `shouldBe` [offer, offer]
   where
     offer =
       SecondHandOffer

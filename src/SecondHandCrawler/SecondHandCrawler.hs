@@ -6,6 +6,7 @@ module SecondHandCrawler.SecondHandCrawler
   ) where
 
 import           Control.Applicative ()
+import           Data.Maybe          (fromMaybe)
 import           Data.Text           (pack, strip, unpack)
 import           Text.HTML.Scalpel
 
@@ -19,8 +20,8 @@ data SecondHandOffer = SecondHandOffer
 trim :: String -> String
 trim = unpack . strip . pack
 
-parseHtml :: String -> Maybe [SecondHandOffer]
-parseHtml html = scrapeStringLike html secondHandOffer
+parseHtml :: String -> [SecondHandOffer]
+parseHtml html = fromMaybe [] (scrapeStringLike html secondHandOffer)
    where
    secondHandOffer :: Scraper String [SecondHandOffer]
    secondHandOffer = chroots ("div" @: [hasClass "gm_offer"]) offer
