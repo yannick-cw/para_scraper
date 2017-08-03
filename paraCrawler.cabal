@@ -15,8 +15,8 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Client, SecondHandCrawler.SecondHandCrawler
-  other-modules:       CrawlerModels, FacebookConnector, SecondHandCrawler.SecondHandConnector
+  exposed-modules:     Client, SecondHandCrawler.SecondHandCrawler, CrawlerModels
+  other-modules:       FacebookConnector, SecondHandCrawler.SecondHandConnector
   build-depends:       base >= 4.7 && < 5
                        , servant
                        , servant-blaze

@@ -43,18 +43,18 @@ fbApi = Proxy
 fbClient :: Int -> String -> Maybe String -> Maybe String -> Maybe String -> ClientM FacebookResults
 fbClient = client fbApi
 
-facebookRequest :: String -> ClientM [FacebookOffer]
+facebookRequest :: String -> ClientM [Offer]
 facebookRequest token =
   fmap
     facebookResultsToOffers
     (fbClient 129251540443443 "feed" (Just token) (Just "100") (Just "created_time,message,permalink_url,picture"))
 
-facebookResultsToOffers :: FacebookResults -> [FacebookOffer]
+facebookResultsToOffers :: FacebookResults -> [Offer]
 facebookResultsToOffers results = mapMaybe fbResultToOffer (rootFbData results)
 
-fbResultToOffer :: FacebookResult -> Maybe FacebookOffer
+fbResultToOffer :: FacebookResult -> Maybe Offer
 fbResultToOffer fb = do
   msg <- message fb
   link <- permalink_url fb
   imageLink <- picture fb
-  Just $ FacebookOffer msg link imageLink
+  Just $ Offer msg link imageLink ""

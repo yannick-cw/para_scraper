@@ -1,7 +1,7 @@
 module SecondHandCrawler.SecondHandParserSpec where
 
-import           SecondHandCrawler.SecondHandCrawler (SecondHandOffer (..),
-                                                      parseHtml)
+import           CrawlerModels                       (Offer (..))
+import           SecondHandCrawler.SecondHandCrawler (parseHtml)
 import           Test.Hspec
 
 htmlString :: String -> String
@@ -28,7 +28,7 @@ spec =
       parseHtml (htmlString $ offerHtml ++ offerHtml) `shouldBe` [offer, offer]
   where
     offer =
-      SecondHandOffer
+      Offer
       { title = "Mentor for test"
       , imgSrc = "http://www.dhv.de/src.jpg"
       , href = "http://www.dhv.de/offer"

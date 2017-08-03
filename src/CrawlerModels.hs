@@ -1,7 +1,10 @@
-module CrawlerModels where
+module CrawlerModels
+  ( Offer(..)
+  ) where
 
-data FacebookOffer = FacebookOffer
-  { msg       :: String
-  , link      :: String
-  , imageLink :: String
-  } deriving Show
+data Offer = Offer
+  { title       :: String
+  , imgSrc      :: String
+  , href        :: String
+  , description :: String
+  } deriving (Eq, Show)

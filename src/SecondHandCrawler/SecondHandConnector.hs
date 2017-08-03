@@ -10,16 +10,17 @@ module SecondHandCrawler.SecondHandConnector
   ) where
 
 import           Control.Arrow                       (left)
+import           CrawlerModels                       (Offer)
 import           Data.Proxy
 import           Data.Text.Lazy                      (unpack)
 import qualified Data.Text.Lazy                      as TextL
 import qualified Data.Text.Lazy.Encoding             as TextL
 import           Network.HTTP.Media                  ((//), (/:))
-import           SecondHandCrawler.SecondHandCrawler (SecondHandOffer,
-                                                      parseHtml)
+import           SecondHandCrawler.SecondHandCrawler (parseHtml)
 import           Servant.API                         ((:>), Accept, Get,
                                                       MimeUnrender (..),
-                                                      PlainText, contentType, QueryParam)
+                                                      PlainText, QueryParam,
+                                                      contentType)
 import           Servant.Client
 
 data HTML
@@ -39,5 +40,5 @@ shApi = Proxy
 shClient :: Int -> ClientM String
 shClient limit = unpack <$> client shApi (Just limit) (Just 1)
 
-secondHandRequest :: ClientM [SecondHandOffer]
+secondHandRequest :: ClientM [Offer]
 secondHandRequest = parseHtml <$> shClient 1000
