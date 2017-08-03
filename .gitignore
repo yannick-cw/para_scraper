@@ -8,3 +8,4 @@ haskellServer.iml
 .ideaHaskellLib
 .stack-work
 cabal.config
+paraCrawler.iml

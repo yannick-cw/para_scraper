@@ -21,7 +21,8 @@ trim :: String -> String
 trim = unpack . strip . pack
 
 parseHtml :: String -> [SecondHandOffer]
-parseHtml html = fromMaybe [] (scrapeStringLike html secondHandOffer)
+parseHtml html =
+ fromMaybe [] (scrapeStringLike html secondHandOffer)
    where
    secondHandOffer :: Scraper String [SecondHandOffer]
    secondHandOffer = chroots ("div" @: [hasClass "gm_offer"]) offer

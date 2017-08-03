@@ -16,17 +16,17 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Client, SecondHandCrawler.SecondHandCrawler
-  other-modules:       CrawlerModels, FacebookConnector
+  other-modules:       CrawlerModels, FacebookConnector, SecondHandCrawler.SecondHandConnector
   build-depends:       base >= 4.7 && < 5
                        , servant
---                       , base-compat
+                       , servant-blaze
                        , aeson
---                       , http-media
                        , http-client
                        , servant-client
                        , http-client-tls
                        , scalpel
                        , text
+                       , http-media
   default-language:    Haskell2010
 
 executable paraCrawler-exe
