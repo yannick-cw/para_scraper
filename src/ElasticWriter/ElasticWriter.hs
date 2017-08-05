@@ -17,9 +17,11 @@ writer offers =
   runBH' $
    -- set up index
    do
-    offersWithId <- liftIO $ traverse addId offers
+    _ <- deleteIndex indexName
+    False <- indexExists indexName
     _ <- createIndex indexSettings indexName
     True <- indexExists indexName
+    offersWithId <- liftIO $ traverse addId offers
     _ <- traverse (uncurry indexIt) offersWithId
     return ()
   where
