@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Client, SecondHandCrawler.SecondHandCrawler, CrawlerModels
+  exposed-modules:     Client, SecondHandCrawler.SecondHandCrawler, CrawlerModels, ElasticWriter.ElasticWriter
   other-modules:       FacebookConnector, SecondHandCrawler.SecondHandConnector
   build-depends:       base >= 4.7 && < 5
                        , servant
@@ -27,6 +27,8 @@ library
                        , scalpel
                        , text
                        , http-media
+                       , bloodhound
+                       , uuid
   default-language:    Haskell2010
 
 executable paraCrawler-exe
